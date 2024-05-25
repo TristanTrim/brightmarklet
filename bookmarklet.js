@@ -1,5 +1,5 @@
 
-var courses;
+window.courses;
 
 function requestCourses(callback){
 
@@ -22,15 +22,35 @@ function requestCourses(callback){
 
 }
 
+function startOrAdd(dict,key,val){
+    if (key in dict){
+        dict[key].push(val);
+    }else{
+        dict[key] = [val];
+    }
+}
+
 requestCourses(()=>{
     const brmk_menu = document.createElement("div");
     brmk_menu.id="brmk menu";
     document.body.prepend(brmk_menu);
 
+    window.terms = {};
+
     for(let i=0; i<courses.length; i++){
-        divbuf = document.createElement("div");
-        divbuf.innerText = courses[i][1];
-        brmk_menu.appendChild(divbuf);
+        let c = courses[i];
+        if (
+                c[1].startsWith("Summer")
+             || c[1].startsWith("Spring")
+             || c[1].startsWith("Fall")
+            ){
+            let term = c[1].split(" ").slice(0,2).reverse().join(" ");
+            startOrAdd(terms,term,c);
+        }
+    }
+    
+    for (const [term, courselist] of Object.entries(terms)) {
+        console.log(term, courselist.map((x)=>{return x[0];}));
     }
     
 });
