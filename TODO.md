@@ -8,10 +8,10 @@
   - [x] Info for above into README.md
 - [x] Write code to inject menu onto page
 - [x] Figure a way to get bs course codes / info
-- [ ] Feature 1: show all grades
+- [x] Feature 1: show all grades
   - [ ] current term option
-  - [ ] all courses option
-  - [ ] previous terms options
+  - [ ] all courses together option
+  - [x] choose from every term option
 - [ ] Feature 2: show assignments
   - [ ] current term all
   - [ ] current term unsubmitted

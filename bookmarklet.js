@@ -1,4 +1,7 @@
 
+
+
+
 window.courses;
 
 function requestCourses(callback){
@@ -30,6 +33,9 @@ function startOrAdd(dict,key,val){
     }
 }
 
+
+
+
 requestCourses(()=>{
     const brmk_menu = document.createElement("div");
     brmk_menu.id="brmk menu";
@@ -49,9 +55,60 @@ requestCourses(()=>{
         }
     }
     
+    let divbuf;
     for (const [term, courselist] of Object.entries(terms)) {
-        console.log(term, courselist.map((x)=>{return x[0];}));
+        console.log(term, courselist);
+
+        divbuf = document.createElement("div");
+        divbuf.innerHTML = "<a>"+term+"</a>";
+        divbuf.onclick=()=>{openTerm(term);};
+        brmk_menu.appendChild(divbuf);
     }
     
 });
+
+
+
+
+function openTerm(term){
+    console.log(term);
+    console.log(terms[term]);
+    for(const [cnum,cname] of terms[term] ){
+        addIframe(cnum, cname);
+    }
+
+    window.scrollTo(0,document.body.scrollHeight);
+}
+
+
+
+function resizeIFrameToFitContent( iFrame ) {
+
+    iFrame.height = iFrame.contentWindow.document.body.scrollHeight;
+}
+
+
+
+function addIframe(coursenum, name ){
+
+  let title = document.createElement("div");
+  title.innerHTML = name ;
+  document.body.append(title);
+
+  window.ifr = document.createElement("iframe");
+  document.body.append(window.ifr);
+  window.ifr.width = window.innerWidth-20;
+  
+
+  let thisifr = window.ifr;
+  window.ifr.onload = ()=>{ 
+			setTimeout( 
+				()=>{ resizeIFrameToFitContent( thisifr ); },
+				200); } ;
+
+  window.ifr.src = "https://bright.uvic.ca/d2l/lms/grades/my_grades/main.d2l?ou=" + coursenum;
+
+}
+
+
 

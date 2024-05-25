@@ -4,18 +4,14 @@
 python -m http.server
 
 
-# Request grid menu:
+# etc
 
-let resp = "";
-const Http = new XMLHttpRequest();
-const url='https://bright.uvic.ca/d2l/lp/courseSelector/6606/InitPartial';
-Http.open("GET", url);
-Http.send();
 
-Http.onreadystatechange = (e) => {
-  resp = Http.responseText;
-}
+###  uhhhh.... stuff
 
+
+
+############
 
 # Other urls
 
