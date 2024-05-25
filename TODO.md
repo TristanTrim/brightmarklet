@@ -12,10 +12,10 @@
   - [ ] current term option
   - [ ] all courses together option
   - [x] choose from every term option
-- [ ] Feature 2: show assignments
+- [x] Feature 2: show assignments
   - [ ] current term all
-  - [ ] current term unsubmitted
-  - [ ] previous terms
+  - [x] current term unsubmitted
+  - [x] previous terms
 - [ ] Feature 3: study friend finder
   - [ ] Why does bs give all your classmates names and emails?
   - [ ] It's kinda creepy right?
@@ -23,5 +23,6 @@
   - [ ] Which is basically impossible with native bs
   - [ ] So... Bookmarklet!
 - [ ] Make demo videos
+- [ ] Delete or hide br page when showing other stuff
 - [ ] Figure out how to have comments in js script ;\_;
 - [ ] Change "onclick" to "href" so the mouseover doesn't look awkward.

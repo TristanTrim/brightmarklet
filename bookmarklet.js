@@ -88,9 +88,47 @@ requestCourses(()=>{
         divbuf.onclick=()=>{openTerm(assiurl,term);};
         list.appendChild(divbuf);
     }
+
+    divbuf = document.createElement("div");
+    divbuf.innerHTML="<h2>Other Tools</h2>";
+    brmk_menu.appendChild(divbuf);
+
+    divbuf = document.createElement("div");
+    divbuf.innerHTML="- Hide Submitted Assignments";
+    divbuf.onclick=()=>{hideSubmitted();};
+    brmk_menu.appendChild(divbuf);
     
 });
 
+function hideSubmitted(){
+
+    list = document.getElementsByClassName("d_gt");
+    for (let i=list.length; i>=0; i=i-1){
+      let td = list[i];
+      console.log(td);  
+      if( td && td.className == "d_gt"
+            && ! td.firstChild.innerText.startsWith("Not Sub")
+          ){
+             td.parentElement.hidden=true;
+      }
+    }
+
+    for (const ifr of document.getElementsByTagName("iframe")){
+      
+      list = ifr.contentWindow.document.getElementsByClassName("d_gt");
+      for (let i=list.length; i>=0; i=i-1){
+        let td = list[i];
+        console.log(td);  
+        if( td && td.className == "d_gt"
+              && ! td.firstChild.innerText.startsWith("Not Sub")
+            ){
+               td.parentElement.hidden=true;
+        }
+      }
+        ifr.height = ifr.contentWindow.document.body.scrollHeight;
+    }
+
+}
 
 
 function openTerm(url,term){
