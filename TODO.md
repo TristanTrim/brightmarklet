@@ -4,8 +4,8 @@
 - [ ] Setup
   - [x] Find that page that converts js into bookmarklet
   - [x] Make and test basic test bookmarklet
-  - [ ] Make and test gh-pages to deploy bookmarklet
-  - [ ] Info for above into README.md
+  - [x] Make and test gh-pages to deploy bookmarklet
+  - [x] Info for above into README.md
 - [ ] Write code to inject menu onto page
 - [ ] Figure a way to get bs course codes / info
 - [ ] Feature 1: show all grades
