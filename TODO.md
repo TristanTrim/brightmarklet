@@ -7,7 +7,7 @@
   - [x] Make and test gh-pages to deploy bookmarklet
   - [x] Info for above into README.md
 - [x] Write code to inject menu onto page
-- [ ] Figure a way to get bs course codes / info
+- [x] Figure a way to get bs course codes / info
 - [ ] Feature 1: show all grades
   - [ ] current term option
   - [ ] all courses option
@@ -23,3 +23,4 @@
   - [ ] Which is basically impossible with native bs
   - [ ] So... Bookmarklet!
 - [ ] Make demo videos
+- [ ] Figure out how to have comments in js script ;_;
