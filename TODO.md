@@ -1,3 +1,24 @@
 
 
-[] make todo list
+- [x] make todo list
+- [ ] Setup
+  - [ ] Find that page that converts js into bookmarklet
+  - [ ] Make and test basic test bookmarklet
+  - [ ] Make and test gh-pages to deploy bookmarklet
+  - [ ] Info for above into README.md
+- [ ] Write code to inject menu onto page
+- [ ] Figure a way to get bs course codes / info
+- [ ] Feature 1: show all grades
+  - [ ] current term option
+  - [ ] all courses option
+  - [ ] previous terms options
+- [ ] Feature 2: show assignments
+  - [ ] current term all
+  - [ ] current term unsubmitted
+  - [ ] previous terms
+- [ ] Feature 3: study friend finder
+  - [ ] Why does bs give all your classmates names and emails?
+  - [ ] It's kinda creepy right?
+  - [ ] Well, whatever, best way I can think to use this info is to look for people in more than one of my classes
+  - [ ] Which is basically impossible with native bs
+  - [ ] So... Bookmarklet!
