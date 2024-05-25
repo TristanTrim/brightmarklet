@@ -1,12 +1,12 @@
 
 
 - [x] make todo list
-- [ ] Setup
+- [x] Setup
   - [x] Find that page that converts js into bookmarklet
   - [x] Make and test basic test bookmarklet
   - [x] Make and test gh-pages to deploy bookmarklet
   - [x] Info for above into README.md
-- [ ] Write code to inject menu onto page
+- [x] Write code to inject menu onto page
 - [ ] Figure a way to get bs course codes / info
 - [ ] Feature 1: show all grades
   - [ ] current term option
@@ -22,3 +22,4 @@
   - [ ] Well, whatever, best way I can think to use this info is to look for people in more than one of my classes
   - [ ] Which is basically impossible with native bs
   - [ ] So... Bookmarklet!
+- [ ] Make demo videos
