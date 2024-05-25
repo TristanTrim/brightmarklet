@@ -1,0 +1,32 @@
+
+
+# Request grid menu:
+
+let resp = "";
+const Http = new XMLHttpRequest();
+const url='https://bright.uvic.ca/d2l/lp/courseSelector/6606/InitPartial';
+Http.open("GET", url);
+Http.send();
+
+Http.onreadystatechange = (e) => {
+  resp = Http.responseText;
+}
+
+
+# Other urls
+
+# Course selector. Should return course codes
+https://bright.uvic.ca/d2l/lp/courseSelector/6606/InitPartial
+# grades. needs course code
+https://bright.uvic.ca/d2l/lms/grades/my_grades/main.d2l
+
+
+# brightspace api does exist... Maybe I'll look at it a bit
+
+https://docs.valence.desire2learn.com/reference.html
+
+
+
+This might be an interesting alternate way to do this:
+https://stackoverflow.com/a/72223376
+
