@@ -23,4 +23,5 @@
   - [ ] Which is basically impossible with native bs
   - [ ] So... Bookmarklet!
 - [ ] Make demo videos
-- [ ] Figure out how to have comments in js script ;_;
+- [ ] Figure out how to have comments in js script ;\_;
+- [ ] Change "onclick" to "href" so the mouseover doesn't look awkward.
