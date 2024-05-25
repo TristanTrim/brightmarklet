@@ -14,24 +14,37 @@
   <body>
     <main>
       <a id="bookmarklet">
-         yo
+         If you see this text, something went wrong : (
       </a>
     </main>
 
     <script>
 
 let bookmarklet = document.getElementById("bookmarklet");
-let scripttext = "alert(\"yo\");";
 
-prefix = 'javascript:(function()%7B';
-postfix = '%7D)()';
 
-scripttext = prefix + scripttext + postfix
-scripttext = scripttext.replaceAll('\n', ' ')
-scripttext = scripttext.replace(/^ {1,4}/gm, '')
+let scripttext;
 
-bookmarklet.setAttribute('href', scripttext)
 
+const Http = new XMLHttpRequest();
+const url='/bookmarklet.js';
+Http.open("GET", url);
+Http.send();
+
+Http.onreadystatechange = (e) => {
+
+    scripttext = Http.responseText;
+
+    prefix = 'javascript:(function()%7B';
+    postfix = '%7D)()';
+
+    scripttext = prefix + scripttext + postfix
+    scripttext = scripttext.replaceAll('\n', ' ')
+    scripttext = scripttext.replace(/^ {1,4}/gm, '')
+
+    bookmarklet.setAttribute('href', scripttext)
+    bookmarklet.innerHTML="bkmklt"; 
+}
 
     </script>
 

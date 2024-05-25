@@ -1,4 +1,8 @@
 
+# run simple http server
+
+python -m http.server
+
 
 # Request grid menu:
 
@@ -29,4 +33,12 @@ https://docs.valence.desire2learn.com/reference.html
 
 This might be an interesting alternate way to do this:
 https://stackoverflow.com/a/72223376
+
+# bookmarklet weirdness
+
+// This is how to take runnable js and make it a bookmarklet... interesting
+//pre.innerText = dataUriPrefix + bookmarklet.toString().slice(26, -2).replace(/^ {1,4}/gm, '') + '\n\</script\>'
+
+// this allows running on new tabs
+dataUriPrefix = 'data:text/html,\<body\>\<script\>\n'
 
