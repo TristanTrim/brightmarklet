@@ -2,8 +2,8 @@
 
 - [x] make todo list
 - [ ] Setup
-  - [ ] Find that page that converts js into bookmarklet
-  - [ ] Make and test basic test bookmarklet
+  - [x] Find that page that converts js into bookmarklet
+  - [x] Make and test basic test bookmarklet
   - [ ] Make and test gh-pages to deploy bookmarklet
   - [ ] Info for above into README.md
 - [ ] Write code to inject menu onto page
