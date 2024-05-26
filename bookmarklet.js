@@ -106,8 +106,9 @@ requestCourses(()=>{
         divbuf = document.createElement("li");
         divbuf.type="checkbox";
         divbuf.innerHTML = "<input type='checkbox' id="
-                    +term+"></input>"
-                    +"<label for="+term+">"+term+"</label>";
+                    +term.replace(" ","_")+"></input>"
+                    +"<label for="+term.replace(" ","_")+">"
+                    +term+"</label>";
         list.appendChild(divbuf);
     }
     divbuf = document.createElement("li");
@@ -117,16 +118,12 @@ requestCourses(()=>{
 
 });
 
-function findFriends(){
-    alert("Not yet implemented");
-}
 
 function hideSubmitted(){
 
     list = document.getElementsByClassName("d_gt");
     for (let i=list.length; i>=0; i=i-1){
       let td = list[i];
-      console.log(td);  
       if( td && td.className == "d_gt"
             && ! td.firstChild.innerText.startsWith("Not Sub")
           ){
@@ -139,7 +136,6 @@ function hideSubmitted(){
       list = ifr.contentWindow.document.getElementsByClassName("d_gt");
       for (let i=list.length; i>=0; i=i-1){
         let td = list[i];
-        console.log(td);  
         if( td && td.className == "d_gt"
               && ! td.firstChild.innerText.startsWith("Not Sub")
             ){
@@ -153,8 +149,6 @@ function hideSubmitted(){
 
 
 function openTerm(url,term){
-    console.log(term);
-    console.log(terms[term]);
     for(const [cnum,cname] of terms[term] ){
         addIframe(
             url+cnum,
@@ -196,4 +190,128 @@ function addIframe(url, name ){
 }
 
 
+
+
+
+
+
+
+
+function findFriends(){
+    window.searchedClasses = [];
+    window.classesToSearch = [];
+    window.classmates = {};
+    for (const [term, courselist] of Object.entries(terms)) {
+        cb = document.getElementById(term.replace(" ","_"));
+
+        if (cb.checked){
+            for (const [cnum, cname] of courselist){
+                searchedClasses.push(cnum);
+                classesToSearch.push(cnum);
+                classmates[cnum] = [];
+                
+            }
+        }
+    }
+    fffromMakeIframe();
+}
+
+
+
+
+function fffromMakeIframe(){
+
+  
+  window.ifr = document.createElement("iframe");
+  document.body.append(window.ifr);
+  window.ifr.width = window.innerWidth-20;
+  window.ifr.height = window.innerHeight-10;
+  window.scrollTo(0,document.body.scrollHeight);
+  
+  window.ifr.onload = ()=>{
+    setTimeout(searchClass,500);
+  };
+  
+  loadClassToSearch();
+
+}
+
+function loadClassToSearch(){
+  let c = window.classesToSearch.pop();
+  if (c==undefined){
+    alert("fin search");
+    countEm();
+  }else{
+    window.coursenum = c;
+    window.ifr.src = "https://bright.uvic.ca/d2l/lms/classlist/classlist.d2l?ou=" + c;
+  }
+}
+
+function searchClass(){  
+
+  let t = window.ifr.contentDocument.getElementsByClassName("d2l-table")[0].firstChild;
+
+  let nams = Array.prototype.slice.call(t.children).map( (tr)=>{ return tr.children[2].innerText } );
+  window.classmates[coursenum] = window.classmates[coursenum].concat(nams);
+
+  
+  butt = false;
+  for(const button of window.ifr.contentDocument.getElementsByTagName("d2l-button-icon") ){
+    if ( button.text == "Next Page" ) {
+        button.click();
+        butt=true;
+        break;
+    }
+  }
+  if (!butt){ 
+      loadClassToSearch();
+  }
+}
+
+function fromLookThroughPages(){
+  
+  for(const cnum of window.coursenums){
+    window.location.href = "https://bright.uvic.ca/d2l/lms/classlist/classlist.d2l?ou=" + cnum; 
+  
+    for(const pg of window.ifr.contentDocument.getElementById("z_ew").children){
+      UI.GC('z_g').SetPageNum(pg.value,true);
+      
+      for(const tr of document.getElementById("z_g").children[0].children){
+        var name = tr.children[2].children[0].innerHTML;
+        window.classmates[cnum].push(name);
+      }
+    }
+  }
+
+}
+
+
+function countEm(){
+    var studCount = new Proxy({}, {
+      get: (target, name) => name=="list"? target : name in target ? target[name] : 0
+    });
+
+    for( const num of searchedClasses){
+       let cl = classmates[num];
+       for( const nam of cl){
+          studCount[nam]++;
+       }
+    } 
+
+
+    countStuds = {};
+
+    for (var key in studCount) {
+     if ( studCount[key] in countStuds ){
+       countStuds[studCount[key]].push(key);
+     }else{
+       countStuds[studCount[key]] = [];
+       countStuds[studCount[key]].push(key);
+     }
+    }
+
+    console.log("Finished search. Here are your results:");
+    console.log(countStuds);
+
+}
 
