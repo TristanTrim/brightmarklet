@@ -11,7 +11,7 @@ function requestCourses(callback){
     Http.open("GET", url);
     Http.send();
 
-    Http.onreadystatechange = (e) => {
+    Http.onloadend = (e) => {
       let resp = Http.responseText;
       let coursetxt = [...resp.matchAll(RegExp("d2l/home/.*?<\/a>","g"))];
       
@@ -66,8 +66,6 @@ requestCourses(()=>{
     let list = document.createElement("ul");
     brmk_menu.appendChild(list);
     for (const [term, courselist] of Object.entries(terms)) {
-        console.log(term, courselist);
-
         divbuf = document.createElement("li");
         divbuf.innerHTML = "<a>- "+term+"</a>";
         divbuf.onclick=()=>{openTerm(gradesurl,term);};
@@ -78,11 +76,10 @@ requestCourses(()=>{
     divbuf = document.createElement("div");
     divbuf.innerHTML="<h2>View Assignments</h2>";
     brmk_menu.appendChild(divbuf);
+
     list = document.createElement("ul");
     brmk_menu.appendChild(list);
     for (const [term, courselist] of Object.entries(terms)) {
-        console.log(term, courselist);
-
         divbuf = document.createElement("li");
         divbuf.innerHTML = "<a>- "+term+"</a>";
         divbuf.onclick=()=>{openTerm(assiurl,term);};
@@ -97,8 +94,32 @@ requestCourses(()=>{
     divbuf.innerHTML="- Hide Submitted Assignments";
     divbuf.onclick=()=>{hideSubmitted();};
     brmk_menu.appendChild(divbuf);
-    
+
+    divbuf = document.createElement("div");
+    divbuf.innerHTML="<h3>Find Friends</h3>";
+    brmk_menu.appendChild(divbuf);
+
+    list = document.createElement("ul");
+    brmk_menu.appendChild(list);
+    for (const [term, courselist] of Object.entries(terms)) {
+
+        divbuf = document.createElement("li");
+        divbuf.type="checkbox";
+        divbuf.innerHTML = "<input type='checkbox' id="
+                    +term+"></input>"
+                    +"<label for="+term+">"+term+"</label>";
+        list.appendChild(divbuf);
+    }
+    divbuf = document.createElement("li");
+    divbuf.innerHTML="--> Search (warning, slow)";
+    divbuf.onclick=()=>{findFriends()};
+    list.appendChild(divbuf);
+
 });
+
+function findFriends(){
+    alert("Not yet implemented");
+}
 
 function hideSubmitted(){
 

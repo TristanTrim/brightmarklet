@@ -22,6 +22,7 @@
   - [ ] Well, whatever, best way I can think to use this info is to look for people in more than one of my classes
   - [ ] Which is basically impossible with native bs
   - [ ] So... Bookmarklet!
+- [x] Stop it from adding menu items multiple times
 - [ ] Make demo videos
 - [ ] Delete or hide br page when showing other stuff
 - [ ] Figure out how to have comments in js script ;\_;
